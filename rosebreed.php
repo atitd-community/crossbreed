@@ -101,7 +101,7 @@ function printgenome($label, $genome, $checks = false) {
 	printf("<tr>");
 
 	if ($checks) {
-		if (($label == "Left") || ($label == "Right")) {
+		if (preg_match("/^[LR]:.*$/", $label)) {
 			printf("<th></th>");
 		} else {
 			printf("<td><input type='checkbox' onchange='onCheck(this);'></td>");
@@ -141,8 +141,8 @@ function printresults() {
 	global $ltgenome;
 	global $rtgenome;
 
-	printgenome('Left', $ltgenome, true);
-	printgenome('Right', $rtgenome, true);
+	printgenome('L:' . (!empty($_REQUEST['LS']) ? $_REQUEST['LS'] : 'Other'), $ltgenome, true);
+	printgenome('R:' . (!empty($_REQUEST['RS']) ? $_REQUEST['RS'] : 'Other'), $rtgenome, true);
 
 	foreach ($children as $genome) {
 		printgenome($_REQUEST['name'], $genome, true);
@@ -342,7 +342,7 @@ runcross();
 				<td><input type="text" id="target" name="target" size="60" placeholder="Example: ROYGU" value="<?php echo $_REQUEST['target']; ?>"></td>
 			</tr>
 			<tr>
-				<th colspan='2'>Cross</th>
+				<th colspan='2'>Cross Name</th>
 				<td><input type="text" id="name" name="name" size="20" value="<?php echo $_REQUEST['name']; ?>"></td>
 			</tr>
 		</table>

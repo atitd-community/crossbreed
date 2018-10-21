@@ -40,7 +40,7 @@ function printgenome($label, $genome, $checks = false) {
 	$onpetal	= "";
 	$ospetal	= "";
 
-	$genome = trim($genome);
+	$genome = sprintf('K%sK', trim($genome));
 	$glen = strlen($genome);
 
 	for ($i = 0 ; $i < $glen ; $i++)
@@ -181,7 +181,8 @@ function printgenome($label, $genome, $checks = false) {
 	printf("<td>%0.1f</td>", $size);
 	printf("<td>%s</td>", $ferts);
 
-	printf("<td>K%sK</td>", $genome);
+	printf("<td>%d</td>", strlen($genome));
+	printf("<td>%s</td>", $genome);
 
 	printf("</tr>\n");
 }
@@ -400,7 +401,7 @@ runcross();
 	<h3>Results</h3>
 
 	<table cellpadding="3" cellspacing="0">
-		<tr><th style='text-align: center;'>X</th><th>Splint</th><th>IS</th><th>MS</th><th>OS</th><th>IEP</th><th>IWP</th><th>ONP</th><th>OSP</th><th>Size</th><th>Ferts</th><th>Genome</th></tr>
+		<tr><th style='text-align: center;'>X</th><th>Splint</th><th>IS</th><th>MS</th><th>OS</th><th>IEP</th><th>IWP</th><th>ONP</th><th>OSP</th><th>Size</th><th>Ferts</th><th>L</th><th>Genome</th></tr>
 		<?php printresults(); ?>
 	</table>
 
@@ -416,7 +417,7 @@ runcross();
 	<h3>Known Strains</h3>
 
 	<table cellpadding="3" cellspacing="0">
-		<tr><th>Name</th><th>IS</th><th>MS</th><th>OS</th><th>IEP</th><th>IWP</th><th>ONP</th><th>OSP</th><th>Size</th><th>Ferts</th><th>Genome</th></tr>
+		<tr><th>Name</th><th>IS</th><th>MS</th><th>OS</th><th>IEP</th><th>IWP</th><th>ONP</th><th>OSP</th><th>Size</th><th>Ferts</th><th>L</th><th>Genome</th></tr>
 		<?php printknowns(); ?>
 	</table>
 
@@ -434,6 +435,7 @@ runcross();
 		<tr><td>OSP</td><td>Outer-South (Outer Petal 2) Petal Color</td></tr>
 		<tr><td>Size</td><td>Sum of size genes (-1.0 = dwarf, -0.5 = semidwarf, 0.5 = giant)</td></tr>
 		<tr><td>Ferts</td><td>Number of fertilizations required to split</td></tr>
+		<tr><td>L</td><td>Genome Length</td></tr>
 	</table>
 	</div>
 

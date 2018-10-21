@@ -48,7 +48,7 @@ function printgenome($label, $genome, $checks = false) {
 	$stem	= "";
 	$leaves	= "";
 
-	$genome = trim($genome);
+	$genome = sprintf('K%sK', trim($genome));
 	$glen = strlen($genome);
 
 	for ($i = 0 ; $i < $glen ; $i++)
@@ -127,7 +127,8 @@ function printgenome($label, $genome, $checks = false) {
 
 	printf("<td>%d</td>", $size);
 
-	printf("<td>K%sK</td>", $genome);
+	printf("<td>%d</td>", strlen($genome));
+	printf("<td>%s</td>", $genome);
 
 	printf("</tr>\n");
 }
@@ -346,7 +347,7 @@ runcross();
 	<h3>Results</h3>
 
 	<table cellpadding="3" cellspacing="0">
-		<tr><th style='text-align: center;'>X</th><th>Splint</th><th>UP</th><th>LP</th><th>MP</th><th>FP</th><th>St</th><th>Lv</th><th>Size</th><th>Genome</th></tr>
+		<tr><th style='text-align: center;'>X</th><th>Splint</th><th>UP</th><th>LP</th><th>MP</th><th>FP</th><th>St</th><th>Lv</th><th>Size</th><th>L</th><th>Genome</th></tr>
 		<?php printresults(); ?>
 	</table>
 
@@ -362,7 +363,7 @@ runcross();
 	<h3>Known Strains</h3>
 
 	<table cellpadding="3" cellspacing="0">
-		<tr><th>Name</th><th>UP</th><th>LP</th><th>MP</th><th>FP</th><th>St</th><th>Lv</th><th>Size</th><th>Genome</th></tr>
+		<tr><th>Name</th><th>UP</th><th>LP</th><th>MP</th><th>FP</th><th>St</th><th>Lv</th><th>Size</th><th>L</th><th>Genome</th></tr>
 		<?php printknowns(); ?>
 	</table>
 
@@ -378,6 +379,7 @@ runcross();
 		<tr><td>St</td><td>Stem Color</td></tr>
 		<tr><td>Lv</td><td>Leaf Color</td></tr>
 		<tr><td>Size</td><td>Sum of size genes (-1 = dwarf, 1 = giant)</td></tr>
+		<tr><td>L</td><td>Genome Length</td></tr>
 	</table>
 	</div>
 

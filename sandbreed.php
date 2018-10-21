@@ -52,7 +52,7 @@ function printgenome($label, $genome, $checks = false) {
 	$iupetal	= "";
 	$ilpetal	= "";
 
-	$genome = trim($genome);
+	$genome = sprintf('K%sK', trim($genome));
 	$glen = strlen($genome);
 
 	for ($i = 0 ; $i < $glen ; $i++)
@@ -135,7 +135,8 @@ function printgenome($label, $genome, $checks = false) {
 
 	printf("<td>%d</td>", $size);
 
-	printf("<td>K%sK</td>", $genome);
+	printf("<td>%d</td>", strlen($genome));
+	printf("<td>%s</td>", $genome);
 
 	printf("</tr>\n");
 }
@@ -354,7 +355,7 @@ runcross();
 	<h3>Results</h3>
 
 	<table cellpadding="3" cellspacing="0">
-		<tr><th style='text-align: center;'>X</th><th>Splint</th><th>C</th><th>R</th><th>OLP</th><th>ORP</th><th>IUP</th><th>ILP</th><th>Size</th><th>Genome</th></tr>
+		<tr><th style='text-align: center;'>X</th><th>Splint</th><th>C</th><th>R</th><th>OLP</th><th>ORP</th><th>IUP</th><th>ILP</th><th>Size</th><th>L</th><th>Genome</th></tr>
 		<?php printresults(); ?>
 	</table>
 
@@ -370,7 +371,7 @@ runcross();
 	<h3>Known Strains</h3>
 
 	<table cellpadding="3" cellspacing="0">
-		<tr><th>Name</th><th>C</th><th>R</th><th>OLP</th><th>ORP</th><th>IUP</th><th>ILP</th><th>Size</th><th>Genome</th></tr>
+		<tr><th>Name</th><th>C</th><th>R</th><th>OLP</th><th>ORP</th><th>IUP</th><th>ILP</th><th>Size</th><th>L</th><th>Genome</th></tr>
 		<?php printknowns(); ?>
 	</table>
 
@@ -386,6 +387,7 @@ runcross();
 		<tr><td>IUP</td><td>Inner Upper Petal Color</td></tr>
 		<tr><td>ILP</td><td>Inner Lower Petal Color</td></tr>
 		<tr><td>Size</td><td>Sum of size genes (-3 = dwarf, 1 = giant)</td></tr>
+		<tr><td>L</td><td>Genome Length</td></tr>
 	</table>
 	</div>
 

@@ -34,7 +34,7 @@ function printgenome($label, $genome, $checks = false) {
 	$rotten	= 0;
 	$seeds	= 0;
 
-	$genome = trim($genome);
+	$genome = sprintf('R%sR', trim($genome));
 	$glen = strlen($genome);
 
 	for ($i = 0 ; $i < $glen ; $i++)
@@ -100,7 +100,8 @@ function printgenome($label, $genome, $checks = false) {
 	printf("<td>%s</td>", $nplus);
 	printf("<td>%s</td>", $nminus);
 
-	printf("<td>R%sR</td>", $genome);
+	printf("<td>%d</td>", strlen($genome));
+	printf("<td>%s</td>", $genome);
 
 	printf("</tr>\n");
 }
@@ -321,7 +322,7 @@ runcross();
 	<h3>Results</h3>
 
 	<table cellpadding="3" cellspacing="0">
-		<tr><th style='text-align: center;'>X</th><th>Splint</th><th>Water</th><th>Weed</th><th>Flax</th><th>Rotn</th><th>Seed</th><th>N+</th><th>N-</th><th>Genome</th></tr>
+		<tr><th style='text-align: center;'>X</th><th>Splint</th><th>Water</th><th>Weed</th><th>Flax</th><th>Rotn</th><th>Seed</th><th>N+</th><th>N-</th><th>L</th><th>Genome</th></tr>
 		<?php printresults(); ?>
 	</table>
 
@@ -337,7 +338,7 @@ runcross();
 	<h3>Known Strains</h3>
 
 	<table cellpadding="3" cellspacing="0">
-		<tr><th>Name</th><th>Water</th><th>Weed</th><th>Flax</th><th>Rotn</th><th>Seed</th><th>N+</th><th>N-</th><th>Genome</th></tr>
+		<tr><th>Name</th><th>Water</th><th>Weed</th><th>Flax</th><th>Rotn</th><th>Seed</th><th>N+</th><th>N-</th><th>L</th><th>Genome</th></tr>
 		<?php printknowns(); ?>
 	</table>
 
@@ -355,6 +356,7 @@ runcross();
 		<tr><td>Seed</td><td>Seed yield per seeding</td><td>0</td></tr>
 		<tr><td>N+</td><td>Resistant to High Nitrogen</td><td>N</td></tr>
 		<tr><td>N-</td><td>Resistant to Low Nitrogen</td><td>N</td></tr>
+		<tr><td>L</td><td>Genome Length</td></tr>
 	</table>
 	</div>
 

@@ -1,0 +1,36 @@
+a, a.visited {
+	text-decoration: none;
+	color: blue;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+table { font-family: monospace; }
+th { font-weight: bold; text-align: left; }
+td { border: 1px solid bisque; }
+th { border: 1px solid bisque; background-color: linen; }
+div.error { color: red; }
+
+ul.breednav {
+	list-style: none;
+	margin: 0;
+	padding: 0.2em 0;
+	background: linen;
+}
+
+ul.breednav li {
+	display: inline;
+	margin: 0 0.5em 0 0;
+	padding: 0 0.5em;
+}
+
+hr {
+	border: 1px solid linen;
+}
+
+div.crosskey {
+	display: inline-block;
+	margin-right: 2em;
+}

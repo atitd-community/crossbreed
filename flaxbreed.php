@@ -100,12 +100,21 @@ function printgenome($label, $genome, $checks = false) {
 	printf("<td>%s</td>", $nplus);
 	printf("<td>%s</td>", $nminus);
 
+	$actions = $weeds + $waters;
+	$flaxtot = $flax + $rotten;
+
+	if ($actions > 0) {
+		printf("<td>%0.1f</td>", $flaxtot / $actions);
+	} else {
+		printf("<td>NaN</td>");
+	}
+
+	printf("<td>%d</td>", strlen($genome));
 
 	if (!empty($_REQUEST['target'])) {
 		$genome = str_replace($_REQUEST['target'], '<span class="target">' . $_REQUEST['target'] . "</span>", $genome);
 	}
 
-	printf("<td>%d</td>", strlen($genome));
 	printf("<td>%s</td>", $genome);
 
 	printf("</tr>\n");
@@ -332,7 +341,7 @@ runcross();
 	<h3>Results</h3>
 
 	<table cellpadding="3" cellspacing="0">
-		<tr><th style='text-align: center;'>X</th><th>Splint</th><th>Water</th><th>Weed</th><th>Flax</th><th>Rotn</th><th>Seed</th><th>N+</th><th>N-</th><th>L</th><th>Genome</th></tr>
+		<tr><th style='text-align: center;'>X</th><th>Splint</th><th>Water</th><th>Weed</th><th>Flax</th><th>Rotn</th><th>Seed</th><th>N+</th><th>N-</th><th>F/A</th><th>L</th><th>Genome</th></tr>
 		<?php printresults(); ?>
 	</table>
 
@@ -348,7 +357,7 @@ runcross();
 	<h3>Known Strains</h3>
 
 	<table cellpadding="3" cellspacing="0">
-		<tr><th>Name</th><th>Water</th><th>Weed</th><th>Flax</th><th>Rotn</th><th>Seed</th><th>N+</th><th>N-</th><th>L</th><th>Genome</th></tr>
+		<tr><th>Name</th><th>Water</th><th>Weed</th><th>Flax</th><th>Rotn</th><th>Seed</th><th>N+</th><th>N-</th><th>F/A</th><th>L</th><th>Genome</th></tr>
 		<?php printknowns(); ?>
 	</table>
 
@@ -366,6 +375,7 @@ runcross();
 		<tr><td>Seed</td><td>Seed yield per seeding</td><td>0</td></tr>
 		<tr><td>N+</td><td>Resistant to High Nitrogen</td><td>N</td></tr>
 		<tr><td>N-</td><td>Resistant to Low Nitrogen</td><td>N</td></tr>
+		<tr><td>F/A</td><td>Flax Per Action ((Flax+Rotn)/(Water+Weed))</td><td>N</td></tr>
 		<tr><td>L</td><td>Genome Length</td></tr>
 	</table>
 	</div>

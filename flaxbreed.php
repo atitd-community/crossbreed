@@ -33,6 +33,7 @@ function printgenome($label, $genome, $checks = false) {
 	$flax	= 0;
 	$rotten	= 0;
 	$seeds	= 0;
+	$twp = false;
 
 	$genome = sprintf('R%sR', trim($genome));
 	$glen = strlen($genome);
@@ -50,6 +51,10 @@ function printgenome($label, $genome, $checks = false) {
 
 		if ($dupl == 'IP') {
 			$weeds--;
+		}
+
+		if ($dupl == 'TP') {
+			$tpw = !$tpw;
 		}
 
 		if ($quad == 'ATAT') {
@@ -93,6 +98,8 @@ function printgenome($label, $genome, $checks = false) {
 	printf("<td>%d</td>", $waters);
 	printf("<td>%d</td>", $weeds);
 
+	printf("<td%s>%d</td>", ($tpw ? " class=\"hilite\"" : ""), ($weeds + ($tpw ? 1 : 0)));
+
 	printf("<td>%d</td>", $flax);
 	printf("<td>%d</td>", $rotten);
 	printf("<td>%d</td>", $seeds);
@@ -114,6 +121,8 @@ function printgenome($label, $genome, $checks = false) {
 	if (!empty($_REQUEST['target'])) {
 		$genome = str_replace($_REQUEST['target'], '<span class="target">' . $_REQUEST['target'] . "</span>", $genome);
 	}
+
+	$genome = str_replace("TP", '<span class="hilite">TP</span>', $genome);
 
 	printf("<td>%s</td>", $genome);
 
@@ -333,7 +342,7 @@ runcross();
 		<input type="submit" value="Generate" style="margin-top: 1em;">
 	</form>
 
-	<p>* Jacob's Field and Nile Green require one more weeding than reported here. Suspect something is missing from theory: weed default is supposedly 5 and theory says nothing about increasing weeds. Let me know if you know what's up.</p>
+	<p>* Jacob's Field and Nile Green require one more weeding than reported here under "Weed" (current theory). Suspect something is missing from theory: weed default is supposedly 5 and theory says nothing about increasing weeds. Let me know if you know what's up. I <em>think</em> the sequence <code>TP</code> might be responsible.</p>
 
 	<?php printerrors(); ?>
 
@@ -341,7 +350,7 @@ runcross();
 	<h3>Results</h3>
 
 	<table cellpadding="3" cellspacing="0">
-		<tr><th style='text-align: center;'>X</th><th>Splint</th><th>Water</th><th>Weed</th><th>Flax</th><th>Rotn</th><th>Seed</th><th>N+</th><th>N-</th><th>F/A</th><th>L</th><th>Genome</th></tr>
+		<tr><th style='text-align: center;'>X</th><th>Splint</th><th>Water</th><th>Weed</th><th>TPW</th><th>Flax</th><th>Rotn</th><th>Seed</th><th>N+</th><th>N-</th><th>F/A</th><th>L</th><th>Genome</th></tr>
 		<?php printresults(); ?>
 	</table>
 
@@ -357,11 +366,11 @@ runcross();
 	<h3>Known Strains</h3>
 
 	<table cellpadding="3" cellspacing="0">
-		<tr><th>Name</th><th>Water</th><th>Weed</th><th>Flax</th><th>Rotn</th><th>Seed</th><th>N+</th><th>N-</th><th>F/A</th><th>L</th><th>Genome</th></tr>
+		<tr><th>Name</th><th>Water</th><th>Weed</th><th>TPW</th><th>Flax</th><th>Rotn</th><th>Seed</th><th>N+</th><th>N-</th><th>F/A</th><th>L</th><th>Genome</th></tr>
 		<?php printknowns(); ?>
 	</table>
 
-	<p>* Jacob's Field and Nile Green require one more weeding than reported here. Suspect something is missing from theory: weed default is supposedly 5 and theory says nothing about increasing weeds. Let me know if you know what's up.</p>
+	<p>* Jacob's Field and Nile Green require one more weeding than reported here under "Weed" (current theory). Suspect something is missing from theory: weed default is supposedly 5 and theory says nothing about increasing weeds. Let me know if you know what's up. I <em>think</em> the sequence <code>TP</code> might be responsible.</p>
 
 	<div class='crosskey'>
 	<h3>Flax Attributes</h3>
@@ -369,7 +378,8 @@ runcross();
 	<table cellpadding="3" cellspacing="0">
 		<tr><th>Heading</th><th>Definition</th><th>Default</th></tr>
 		<tr><td>Water</td><td>Number of "Weed and Water" steps</td><td>0</td></tr>
-		<tr><td>Weed</td><td>Number of "Weed" steps</td><td>5</td></tr>
+		<tr><td>Weed</td><td>Number of "Weed" steps (current theory)</td><td>5</td></tr>
+		<tr><td class="hilite">TPW</td><td>Number of "Weed" steps (TP theory)</td><td>5</td></tr>
 		<tr><td>Flax</td><td>Flax yield per bed (excl. pyramid bonus)</td><td>0</td></tr>
 		<tr><td>Rotn</td><td>Rotten Flax yield per bed (excl. pyramid bonus)</td><td>0</td></tr>
 		<tr><td>Seed</td><td>Seed yield per seeding</td><td>0</td></tr>
@@ -392,6 +402,7 @@ runcross();
 		<tr><td>ATATAT</td><td>+1 "Water" -1 "Weed" steps</td></tr>
 		<tr><td>PIT</td><td>N+ Resistance</td></tr>
 		<tr><td>API</td><td>N- Resistance</td></tr>
+		<tr><td class="hilite">TP</td><td><em>MAYBE</em> +1 Weed, canceled out by 2nd TP?</td></tr>
 	</table>
 	</div>
 

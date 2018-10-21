@@ -38,3 +38,8 @@ div.crosskey {
 span.target {
 	color: red;
 }
+
+.hilite {
+	background: yellow;
+}
+

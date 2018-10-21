@@ -335,8 +335,8 @@ runcross();
 				<td><input type="text" id="target" name="target" size="60" placeholder="Example: ATATAT" value="<?php echo $_REQUEST['target']; ?>"></td>
 			</tr>
 			<tr>
-				<th>Cross</th>
-				<td colspan='2'><input type="text" id="name" name="name" size="20" value="<?php echo $_REQUEST['name']; ?>"></td>
+				<th colspan='2'>Cross</th>
+				<td><input type="text" id="name" name="name" size="20" value="<?php echo $_REQUEST['name']; ?>"></td>
 			</tr>
 		</table>
 		<input type="submit" value="Generate" style="margin-top: 1em;">

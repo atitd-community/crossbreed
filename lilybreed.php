@@ -182,6 +182,11 @@ function printgenome($label, $genome, $checks = false) {
 	printf("<td>%s</td>", $ferts);
 
 	printf("<td>%d</td>", strlen($genome));
+
+	if (!empty($_REQUEST['target'])) {
+		$genome = str_replace($_REQUEST['target'], '<span class="target">' . $_REQUEST['target'] . "</span>", $genome);
+	}
+
 	printf("<td>%s</td>", $genome);
 
 	printf("</tr>\n");
@@ -228,6 +233,7 @@ function validate() {
 
 	$_REQUEST['L'] = strtoupper(preg_replace('/[^A-Za-z]/', '', $_REQUEST['L']));
 	$_REQUEST['R'] = strtoupper(preg_replace('/[^A-Za-z]/', '', $_REQUEST['R']));
+	$_REQUEST['target'] = strtoupper(preg_replace('/[^A-Za-z]/', '', $_REQUEST['target']));
 	$_REQUEST['L'] = trim($_REQUEST['L'], 'K');
 	$_REQUEST['R'] = trim($_REQUEST['R'], 'K');
 	$_REQUEST['name'] = preg_replace('/[^A-Za-z#0-9]/', '', $_REQUEST['name']);
@@ -386,6 +392,10 @@ runcross();
 				<td>
 				<input type="text" id="R" name="R" size="100" <?php echo $inputstate['RS']; ?> value="<?php echo $_REQUEST['R']; ?>">
 				</td>
+			</tr>
+			<tr>
+				<th colspan='2'>Target Sequence</th>
+				<td><input type="text" id="target" name="target" size="60" placeholder="Example: GORRGRRO" value="<?php echo $_REQUEST['target']; ?>"></td>
 			</tr>
 			<tr>
 				<th>Cross</th>

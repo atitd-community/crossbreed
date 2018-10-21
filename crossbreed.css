@@ -34,3 +34,7 @@ div.crosskey {
 	display: inline-block;
 	margin-right: 2em;
 }
+
+span.target {
+	color: red;
+}

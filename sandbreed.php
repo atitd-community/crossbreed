@@ -1,18 +1,17 @@
 <?php
 require_once('colorsum.php.inc');
 
-$known["Calliope"]			= "IIOCYYGCUOUCOIUROYGCIIORIYCUGOCGGY";
-$known["Clear Skies"]		= "RURGCCCGRUCCURGRCIYI";
-$known["Cookie Jar"]		= "YUYGYUYGYCRUCOUCRUCOUCYUC";
-$known["Corona"]			= "RICOICYICRICOICYICRICOICYI";
-$known["Love's Touch"]		= "OUOROUOCGYOROYGCIOI";
-$known["Lemondrop"]			= "YGCYGCYGCYUCYUCYUC";
-$known["Lemondrop"]			= "YGCYGCYGCYUCYUCYUC";
-$known["Otter's Sunrise"]	= "ROYGOUOUCROYGYUYUYOICOI";
-$known["Pluribus' Folly"]	= "IRIRYGYGYGRGRGRGIRIOIOIOGOGOGROYGYOROYGROYG";
-$known["Sacrifice"]			= "ROYORCROYORCROYORCROYORC";
-$known["Sunshine"]			= "IYIYIYUYUYGYG";
-$known["Petit Mal"]			= "GYORURGROUOGYORYUYGYIRIOIYIGO";
+$known["Calliope"]			= "VVIZTTAZLILZIVLPITAZVVIPVTZLAIZAAT";
+$known["Clear Skies"]		= "PLPAZZZAPLZZLPAPZVTV";
+$known["Cookie Jar"]		= "TLTATLTATZPLZILZPLZILZTLZ";
+$known["Corona"]			= "PVZIVZTVZPVZIVZTVZPVZIVZTV";
+$known["Love's Touch"]		= "ILIPILIZATIPITAZVIV";
+$known["Lemondrop"]			= "TAZTAZTAZTLZTLZTLZ";
+$known["Otter's Sunrise"]	= "PITAILILZPITATLTLTIVZIV";
+$known["Pluribus' Folly"]	= "VPVPTATATAPAPAPAVPVIVIVIAIAIAPITATIPITAPITA";
+$known["Sacrifice"]			= "PITIPCPITIPCPITIPCPITIPC";
+$known["Sunshine"]			= "VTVTVTLTLTATA";
+$known["Petit Mal"]			= "ATIPLPAPILIATIPTLTATVPVIVTVAI";
 
 $inputstate['LS'] = "";
 $inputstate['RS'] = "";
@@ -32,11 +31,11 @@ function printerrors() {
 
 function colormap($c) {
 	switch ($c) {
-		case 'O':
+		case 'I':
 			return 'M';
-		case 'Y':
+		case 'T':
 			return 'Y';
-		case 'R':
+		case 'P':
 			return 'C';
 		default:
 			return '';
@@ -52,7 +51,7 @@ function printgenome($label, $genome, $checks = false) {
 	$iupetal	= "";
 	$ilpetal	= "";
 
-	$genome = sprintf('K%sK', trim($genome));
+	$genome = sprintf('R%sR', trim($genome));
 	$glen = strlen($genome);
 
 	for ($i = 0 ; $i < $glen ; $i++)
@@ -63,35 +62,35 @@ function printgenome($label, $genome, $checks = false) {
 		$c2 = $quad[2];
 		$c3 = $quad[3];
 
-		if ($quad == "ROYG") {
+		if ($quad == "PITA") {
 			$size += 1;
 		}
 
-		if ($quad == "GYOR") {
+		if ($quad == "ATIP") {
 			$size -= 3;
 		}
 
-		if ($c0 == 'G') {
+		if ($c0 == 'A') {
 			$olpetal .= colormap($c1);
 		}
 
-		if ($c1 == 'G') {
+		if ($c1 == 'A') {
 			$orpetal .= colormap($c0);
 		}
 
-		if ($c0 == 'U') {
+		if ($c0 == 'L') {
 			$iupetal .= colormap($c1);
 		}
 
-		if ($c1 == 'U') {
+		if ($c1 == 'L') {
 			$ilpetal .= colormap($c0);
 		}
 
-		if ($c0 == 'I') {
+		if ($c0 == 'V') {
 			$ring .= colormap($c1);
 		}
 
-		if ($c1 == 'I') {
+		if ($c1 == 'V') {
 			$center .= colormap($c0);
 		}
 	}
@@ -188,8 +187,8 @@ function validate() {
 	$_REQUEST['L'] = strtoupper(preg_replace('/[^A-Za-z]/', '', $_REQUEST['L']));
 	$_REQUEST['R'] = strtoupper(preg_replace('/[^A-Za-z]/', '', $_REQUEST['R']));
 	$_REQUEST['target'] = strtoupper(preg_replace('/[^A-Za-z]/', '', $_REQUEST['target']));
-	$_REQUEST['L'] = trim($_REQUEST['L'], 'K');
-	$_REQUEST['R'] = trim($_REQUEST['R'], 'K');
+	$_REQUEST['L'] = trim($_REQUEST['L'], 'R');
+	$_REQUEST['R'] = trim($_REQUEST['R'], 'R');
 	$_REQUEST['name'] = preg_replace('/[^A-Za-z#0-9]/', '', $_REQUEST['name']);
 
 	if (empty($_REQUEST['name'])) {
@@ -311,7 +310,7 @@ runcross();
 	</p>
 
 	<p>
-	NOTE: This tool currently uses old (T6 and earlier) gene color codes. Please use that format until all the mappings to new colors are known and the tool can be updated. Start/End genes (K) are optional. See <a href="https://atitd.wiki/tale8/Flower_Genome_Theories">Flower Genome Theories</a> at the <a href="https://atitd.wiki/">ATITD Wiki</a> for details on ATITD Sand Bloom genomes. The details there as well as the other <a href="https://atitd.wiki/tale8/Guides#Genetics">Genetics Guides</a> are the basis for how this simulator interprets genomes to generate these data tables.
+	NOTE: This tool uses NEW (T8) gene color codes. Start/End genes (R) are optional. See <a href="https://atitd.wiki/tale8/Flower_Genome_Theories">Flower Genome Theories</a> at the <a href="https://atitd.wiki/">ATITD Wiki</a> for details on ATITD Sand Bloom genomes. The details there as well as the other <a href="https://atitd.wiki/tale8/Guides#Genetics">Genetics Guides</a> are the basis for how this simulator interprets genomes to generate these data tables.
 	</p>
 
 	<noscript>
@@ -398,6 +397,26 @@ runcross();
 		<tr><td>ILP</td><td>Inner Lower Petal Color</td></tr>
 		<tr><td>Size</td><td>Sum of size genes (-3 = dwarf, 1 = giant)</td></tr>
 		<tr><td>L</td><td>Genome Length</td></tr>
+	</table>
+	</div>
+
+	<div class='crosskey'>
+	<h3>Sand Bloom Phenomes</h3>
+
+	<table cellpadding="3" cellspacing="0">
+		<tr><th>Phenome</th><th>Effect</th></tr>
+		<tr><td>Ax</td><td>Outer Left Petal Color x</td></tr>
+		<tr><td>xA</td><td>Outer Right Petal Color x</td></tr>
+		<tr><td>Lx</td><td>Inner Upper Petal Color x</td></tr>
+		<tr><td>xL</td><td>Inner Lower Petal Color x</td></tr>
+		<tr><td>Vx</td><td>Center Color x</td></tr>
+		<tr><td>xV</td><td>Ring Color x</td></tr>
+		<tr><td>PITA</td><td>Giant (Size += 1)</td></tr>
+		<tr><td>ATIP</td><td>Dwarf (Size -= 3)</td></tr>
+		<tr><th>x</th><th>Color</th></tr>
+		<tr><td>I</td><td>Magenta</td></tr>
+		<tr><td>T</td><td>Yellow</td></tr>
+		<tr><td>P</td><td>Cyan</td></tr>
 	</table>
 	</div>
 

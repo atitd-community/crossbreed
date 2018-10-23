@@ -408,9 +408,9 @@ runcross();
 		<tr><td>PITA</td><td>Giant (Size += 1)</td></tr>
 		<tr><td>ATIP</td><td>Dwarf (Size -= 3)</td></tr>
 		<tr><th>x</th><th>Color</th></tr>
+		<tr><td>P</td><td>Cyan</td></tr>
 		<tr><td>I</td><td>Magenta</td></tr>
 		<tr><td>T</td><td>Yellow</td></tr>
-		<tr><td>P</td><td>Cyan</td></tr>
 	</table>
 	</div>
 

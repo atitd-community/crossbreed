@@ -109,28 +109,21 @@ function printgenome($label, $genome, $checks = false) {
 		printf("<td>%s</td>", $label);
 	}
 
-	$center = colorsum($center);
-	$ring = colorsum($ring);
-	$olpetal = colorsum($olpetal);
-	$orpetal = colorsum($orpetal);
-	$iupetal = colorsum($iupetal);
-	$ilpetal = colorsum($ilpetal);
+	$centers = colorsum($center);
+	$rings = colorsum($ring);
+	$olpetals = colorsum($olpetal);
+	$orpetals = colorsum($orpetal);
+	$iupetals = colorsum($iupetal);
+	$ilpetals = colorsum($ilpetal);
 
-	#$center .= "/" . colorsum($center);
-	#$ring .= "/" . colorsum($ring);
-	#$olpetal .= "/" . colorsum($olpetal);
-	#$orpetal .= "/" . colorsum($orpetal);
-	#$iupetal .= "/" . colorsum($iupetal);
-	#$ilpetal .= "/" . colorsum($ilpetal);
+	printf("<td title=\"%s\">%s</td>", $center, $centers);
+	printf("<td title=\"%s\">%s</td>", $ring, $rings);
 
-	printf("<td>%s</td>", $center);
-	printf("<td>%s</td>", $ring);
+	printf("<td title=\"%s\">%s</td>", $olpetal, $olpetals);
+	printf("<td title=\"%s\">%s</td>", $orpetal, $orpetals);
 
-	printf("<td>%s</td>", $olpetal);
-	printf("<td>%s</td>", $orpetal);
-
-	printf("<td>%s</td>", $iupetal);
-	printf("<td>%s</td>", $ilpetal);
+	printf("<td title=\"%s\">%s</td>", $iupetal, $iupetals);
+	printf("<td title=\"%s\">%s</td>", $ilpetal, $ilpetals);
 
 	printf("<td>%d</td>", $size);
 

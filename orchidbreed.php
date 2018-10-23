@@ -109,21 +109,21 @@ function printgenome($label, $genome, $checks = false) {
 		printf("<td>%s</td>", $label);
 	}
 
-	$upetal = colorsum($upetal);
-	$lpetal = colorsum($lpetal);
-	$mpetal = colorsum($mpetal);
-	$fpetal = colorsum($fpetal);
-	$stem = colorsum($stem);
-	$leaves = colorsum($leaves);
+	$upetals = colorsum($upetal);
+	$lpetals = colorsum($lpetal);
+	$mpetals = colorsum($mpetal);
+	$fpetals = colorsum($fpetal);
+	$stems = colorsum($stem);
+	$leavess = colorsum($leaves);
 
-	printf("<td>%s</td>", $upetal);
-	printf("<td>%s</td>", $lpetal);
+	printf("<td title=\"%s\">%s</td>", $upetal, $upetals);
+	printf("<td title=\"%s\">%s</td>", $lpetal, $lpetals);
 
-	printf("<td>%s</td>", $mpetal);
-	printf("<td>%s</td>", $fpetal);
+	printf("<td title=\"%s\">%s</td>", $mpetal, $mpetals);
+	printf("<td title=\"%s\">%s</td>", $fpetal, $fpetals);
 
-	printf("<td>%s</td>", $stem);
-	printf("<td>%s</td>", $leaves);
+	printf("<td title=\"%s\">%s</td>", $stem, $stems);
+	printf("<td title=\"%s\">%s</td>", $leaves, $leavess);
 
 	printf("<td>%d</td>", $size);
 

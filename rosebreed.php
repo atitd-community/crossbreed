@@ -318,7 +318,7 @@ runcross();
 			<tr>
 				<th>Left</th>
 				<td>
-				<select name="LS" onchange="onStrainSelect(this, 'L');">
+				<select id="LS" name="LS" onchange="onStrainSelect(this, 'L');">
 				<?php listchoices('LS'); ?>
 				</select>
 				</td>
@@ -329,7 +329,7 @@ runcross();
 			<tr>
 				<th>Right</th>
 				<td>
-				<select name="RS" onchange="onStrainSelect(this, 'R');">
+				<select id="RS" name="RS" onchange="onStrainSelect(this, 'R');">
 				<?php listchoices('RS'); ?>
 				</select>
 				</td>
@@ -346,6 +346,7 @@ runcross();
 				<td><input type="text" id="name" name="name" size="20" value="<?php echo $_REQUEST['name']; ?>"></td>
 			</tr>
 		</table>
+		<input type="button" name="swap" value="Swap L/R" onclick="onStrainSwap()">
 		<input type="submit" value="Generate" style="margin-top: 1em;">
 	</form>
 

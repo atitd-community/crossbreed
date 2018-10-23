@@ -18,3 +18,25 @@ function onCheck(box) {
 		row.style.color = "black";
 	}
 }
+
+function onStrainSwap() {
+	LS = document.getElementById("LS");
+	RS = document.getElementById("RS");
+	L = document.getElementById("L");
+	R = document.getElementById("R");
+
+	LSv = LS.value;
+	RSv = RS.value;
+	Lv = L.value;
+	Rv = R.value;
+
+	document.getElementById("LS").value = RSv;
+	document.getElementById("RS").value = LSv;
+	document.getElementById("L").value = Rv;
+	document.getElementById("R").value = Lv;
+
+	onStrainSelect(LS, "L");
+	onStrainSelect(RS, "R");
+
+	return false;
+}

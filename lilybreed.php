@@ -1,17 +1,17 @@
 <?php
 require_once('colorsum.php.inc');
 
-$known['Blush']  = 'GRORVGOOOVUROOVIOVIOOVIOOO';
-$known['Clarity']  = 'IRIRIOIOIYIYGORRGRORGRROGORRGRORGRRO';
-$known['Crimson']  = 'GYORIOOOIOOIOIOIYYYIYYIYIYUOOOUYYYUROOUROOURORURORGOOOGOOOGOOOGYYYGYYYGYYYGRORGRORGRORGRORGRROGRROGRROGRRO';
-$known['Crown']	= 'UROOUROOUROOVURVOOVURVORVURORURORUROR';
-$known['Delicate'] = 'IOIOIOIYIYIYGYOR';
-$known['Dusk']	 = 'GRORGORRUYYYGYORIYGRROIYYYGRROGORRGRORROYGIOGRORIOOOIYYIYURRRGRROGORRUOOO';
-$known['Energy']   = 'VVVVVUYYYUYYYGYYYGYYYGRROGRROURORURORVVVVV';
-$known['Fracture'] = 'ROYGROYGYORGORGOOO';
-$known['Morning']  = 'IRRRIYYYIYYYUYYYUYYYURORURORGRRRGYYYGORRGRRO';
-$known['Silken']   = 'RRROOOYYYGGGUUUIII';
-$known['Vampire']  = 'IYIYIOIYIOIO';
+$known['Blush']		= 'APIPNAIIINLPIINVINVIINVIII';
+$known['Clarity']	= 'VPVPVIVIVTVTAIPPAPIPAPPIAIPPAPIPAPPI';
+$known['Crimson']	= 'ATIPVIIIVIIVIVIVTTTVTTVTVTLIIILTTTLPIILPIILPIPLPIPAIIIAIIIAIIIATTTATTTATTTAPIPAPIPAPIPAPIPAPPIAPPIAPPIAPPI';
+$known['Crown']		= 'LPIILPIILPIINLPNIINLPNIPNLPIPLPIPLPIP';
+$known['Delicate']	= 'VIVIVIVTVTVTATIP';
+$known['Dusk']		= 'APIPAIPPLTTTATIPVTAPPIVTTTAPPIAIPPAPIPPITAVIAPIPVIIIVTTVTLPPPAPPIAIPPLIII';
+$known['Energy']	= 'NNNNNLTTTLTTTATTTATTTAPPIAPPILPIPLPIPNNNNN ';
+$known['Fracture']	= 'PITAPITATIPAIPAIII';
+$known['Morning']	= 'VPPPVTTTVTTTLTTTLTTTLPIPLPIPAPPPATTTAIPPAPPI';
+$known['Silken']	= 'PPPIIITTTAAALLLVVV';
+$known['Vampire']	= 'VTVTVIVTVIVI';
 
 $inputstate['LS'] = "";
 $inputstate['RS'] = "";
@@ -29,6 +29,20 @@ function printerrors() {
 	}
 }
 
+function colormap($c) {
+	switch ($c) {
+	case 'P':
+		return 'C';
+	case 'I':
+		return 'M';
+	case 'T':
+		return 'Y';
+	default:
+		return '';
+	}
+}
+
+
 function printgenome($label, $genome, $checks = false) {
 	$ferts		= 48;
 	$istamen	= "";
@@ -40,7 +54,7 @@ function printgenome($label, $genome, $checks = false) {
 	$onpetal	= "";
 	$ospetal	= "";
 
-	$genome = sprintf('K%sK', trim($genome));
+	$genome = sprintf('R%sR', trim($genome));
 	$glen = strlen($genome);
 
 	for ($i = 0 ; $i < $glen ; $i++)
@@ -48,99 +62,69 @@ function printgenome($label, $genome, $checks = false) {
 		$gene = $genome[$i];
 		$quad = substr($genome, $i, 4);
 
-		if ($gene == 'V') {
+		if ($gene == 'N') {
 			if ($ferts >= 26) {
 				$ferts -= 2;
 			}
 		}
 
-		if ($gene == 'I') {
+		if ($gene == 'V') {
 			$c1 = $quad[1];
 			$c2 = $quad[2];
 			$c3 = $quad[3];
 
-			switch ($quad[1]) {
-				case 'R':
-					$ostamen .= 'C';
-					break;
-				case 'O':
-					$ostamen .= 'M';
-					break;
-				case 'Y':
-					$ostamen .= 'Y';
-					break;
-			}
+			$ostamen .= colormap($c1);
 
 			if ($c2 == $c1) {
-				switch ($quad[1]) {
-					case 'R':
-						$mstamen .= 'C';
-						break;
-					case 'O':
-						$mstamen .= 'M';
-						break;
-					case 'Y':
-						$mstamen .= 'Y';
-						break;
-				}
+				$mstamen .= colormap($c2);
 			}
 
 			if (($c2 == $c1) && ($c3 == $c2)) {
-				switch ($quad[1]) {
-					case 'R':
-						$istamen .= 'C';
-						break;
-					case 'O':
-						$istamen .= 'M';
-						break;
-					case 'Y':
-						$istamen .= 'Y';
-						break;
-				}
+				$istamen .= colormap($c3);
 			}
 		}
 
 		switch ($quad) {
-			case "ROYG":
+			case "PITA":
 				$size += 0.5;
 				break;
-			case "GYOR":
+			case "ATIP":
 				$size -= 1.0;
 				break;
-			case "URRR":
+			case "LPPP":
 				$iepetal .= "C";
 				break;
-			case "UOOO":
+			case "LIII":
 				$iepetal .= "M";
 				break;
-			case "UYYY":;
+			case "LTTT":;
 				$iepetal .= "Y";
 				break;
-			case "UORR":
+			case "LIPP":
 				$iwpetal .= "C";
 				break;
-			case "UROO":
+			case "LPII":
 				$iwpetal .= "M";
 				break;
-			case "UROR":
+			case "LPIP":
 				$iwpetal .= "Y";
 				break;
-			case "GRRR":
+			case "APPP":
 				$ospetal .= "C";
 				break;
-			case "GOOO":
+			case "AIII":
 				$ospetal .= "M";
 				break;
-			case "GYYY":
+			case "ATTT":
 				$ospetal .= "Y";
 				break;
-			case "GORR":
+			case "AIPP":
 				$onpetal .= "C";
 				break;
-			case "GROR":
+			case "APIP":
 				$onpetal .= "M";
 				break;
-			case "GRRO":
+			case "APPI":
 				$onpetal .= "Y";
 				break;
 		}
@@ -234,8 +218,8 @@ function validate() {
 	$_REQUEST['L'] = strtoupper(preg_replace('/[^A-Za-z]/', '', $_REQUEST['L']));
 	$_REQUEST['R'] = strtoupper(preg_replace('/[^A-Za-z]/', '', $_REQUEST['R']));
 	$_REQUEST['target'] = strtoupper(preg_replace('/[^A-Za-z]/', '', $_REQUEST['target']));
-	$_REQUEST['L'] = trim($_REQUEST['L'], 'K');
-	$_REQUEST['R'] = trim($_REQUEST['R'], 'K');
+	$_REQUEST['L'] = trim($_REQUEST['L'], 'R');
+	$_REQUEST['R'] = trim($_REQUEST['R'], 'R');
 	$_REQUEST['name'] = preg_replace('/[^A-Za-z#0-9]/', '', $_REQUEST['name']);
 
 	if (empty($_REQUEST['name'])) {
@@ -357,7 +341,7 @@ runcross();
 	</p>
 
 	<p>
-	NOTE: This tool currently uses old (T6 and earlier) gene color codes. Please use that format until all the mappings to new colors are known and the tool can be updated. Start/End genes (K) are optional. See <a href="https://atitd.wiki/tale8/Flower_Genome_Theories">Flower Genome Theories</a> at the <a href="https://atitd.wiki/">ATITD Wiki</a> for details on ATITD Sea Lily genomes. The details there as well as the other <a href="https://atitd.wiki/tale8/Guides#Genetics">Genetics Guides</a> are the basis for how this simulator interprets genomes to generate these data tables.
+	NOTE: This tool uses NEW (T8) gene color codes. Start/End genes (R) are optional. See <a href="https://atitd.wiki/tale8/Flower_Genome_Theories">Flower Genome Theories</a> at the <a href="https://atitd.wiki/">ATITD Wiki</a> for details on ATITD Sea Lily genomes. The details there as well as the other <a href="https://atitd.wiki/tale8/Guides#Genetics">Genetics Guides</a> are the basis for how this simulator interprets genomes to generate these data tables.
 	</p>
 
 	<noscript>
@@ -433,7 +417,7 @@ runcross();
 	</table>
 
 	<div class='crosskey'>
-	<h3>Lily Attributes</h3>
+	<h3>Sea Lily Attributes</h3>
 
 	<table cellpadding="3" cellspacing="0">
 		<tr><th>Heading</th><th>Definition</th></tr>
@@ -444,11 +428,35 @@ runcross();
 		<tr><td>IWP</td><td>Inner-West (Inner Petal 2) Petal Color</td></tr>
 		<tr><td>ONP</td><td>Outer-North (Outer Petal 1) Petal Color</td></tr>
 		<tr><td>OSP</td><td>Outer-South (Outer Petal 2) Petal Color</td></tr>
-		<tr><td>Size</td><td>Sum of size genes (-1.0 = dwarf, -0.5 = semidwarf, 0.5 = giant)</td></tr>
+		<tr><td>Size</td><td>Sum of size genes (-1.0 = dwarf, 0.5 = giant)</td></tr>
 		<tr><td>Ferts</td><td>Number of fertilizations required to split</td></tr>
 		<tr><td>L</td><td>Genome Length</td></tr>
 	</table>
 	</div>
+
+	<div class='crosskey'>
+	<h3>Sea Lily Phenomes</h3>
+
+	<table cellpadding="3" cellspacing="0">
+		<tr><th>Phenome</th><th>Effect</th></tr>
+		<tr><td>Lxxx</td><td>Inner East Petal Color xxx</td></tr>
+		<tr><td>LIPP</td><td>Inner West Petal Cyan</td></tr>
+		<tr><td>LPII</td><td>Inner West Petal Megenta</td></tr>
+		<tr><td>LPIP</td><td>Inner West Petal Yellow</td></tr>
+		<tr><td>Axxx</td><td>Outer South Petal Color xxx</td></tr>
+		<tr><td>AIPP</td><td>Outer North Petal Cyan</td></tr>
+		<tr><td>APIP</td><td>Outer North Petal Megenta</td></tr>
+		<tr><td>APPI</td><td>Outer North Petal Yellow</td></tr>
+		<tr><td>N</td><td>Ferts -= 2</td></tr>
+		<tr><td>PITA</td><td>Giant (Size += 0.5)</td></tr>
+		<tr><td>ATIP</td><td>Dwarf (Size -= 1.0)</td></tr>
+		<tr><th>x</th><th>Color</th></tr>
+		<tr><td>P</td><td>Cyan</td></tr>
+		<tr><td>I</td><td>Magenta</td></tr>
+		<tr><td>T</td><td>Yellow</td></tr>
+	</table>
+	</div>
+
 
 	<div class='crosskey'>
 	<h3>Stamen/Petal Color Key</h3>

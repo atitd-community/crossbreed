@@ -439,6 +439,9 @@ runcross();
 
 	<table cellpadding="3" cellspacing="0">
 		<tr><th>Phenome</th><th>Effect</th></tr>
+		<tr><td>Vx</td><td>Outer Stamen Color x</td></tr>
+		<tr><td>Vxx</td><td>Middle Stamen Color x</td></tr>
+		<tr><td>Vxxx</td><td>Inner Stamen Color x</td></tr>
 		<tr><td>Lxxx</td><td>Inner East Petal Color xxx</td></tr>
 		<tr><td>LIPP</td><td>Inner West Petal Cyan</td></tr>
 		<tr><td>LPII</td><td>Inner West Petal Megenta</td></tr>

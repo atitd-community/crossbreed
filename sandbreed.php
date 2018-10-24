@@ -341,7 +341,7 @@ runcross();
 			</tr>
 			<tr>
 				<th colspan='2'>Target Sequence</th>
-				<td><input type="text" id="target" name="target" size="60" placeholder="Example: ROYG" value="<?php echo $_REQUEST['target']; ?>"></td>
+				<td><input type="text" id="target" name="target" size="60" placeholder="Example: PITA" value="<?php echo $_REQUEST['target']; ?>"></td>
 			</tr>
 			<tr>
 				<th colspan='2'>Cross Name</th>

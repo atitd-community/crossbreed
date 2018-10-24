@@ -442,11 +442,11 @@ runcross();
 		<tr><td>Vx</td><td>Outer Stamen Color x</td></tr>
 		<tr><td>Vxx</td><td>Middle Stamen Color x</td></tr>
 		<tr><td>Vxxx</td><td>Inner Stamen Color x</td></tr>
-		<tr><td>Lxxx</td><td>Inner East Petal Color xxx</td></tr>
+		<tr><td>Lxxx</td><td>Inner East Petal Color x</td></tr>
 		<tr><td>LIPP</td><td>Inner West Petal Cyan</td></tr>
 		<tr><td>LPII</td><td>Inner West Petal Megenta</td></tr>
 		<tr><td>LPIP</td><td>Inner West Petal Yellow</td></tr>
-		<tr><td>Axxx</td><td>Outer South Petal Color xxx</td></tr>
+		<tr><td>Axxx</td><td>Outer South Petal Color x</td></tr>
 		<tr><td>AIPP</td><td>Outer North Petal Cyan</td></tr>
 		<tr><td>APIP</td><td>Outer North Petal Megenta</td></tr>
 		<tr><td>APPI</td><td>Outer North Petal Yellow</td></tr>

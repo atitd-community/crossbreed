@@ -395,6 +395,24 @@ runcross();
 	</div>
 
 	<div class='crosskey'>
+	<h3>Rose Phenomes</h3>
+
+	<table cellpadding="3" cellspacing="0">
+		<tr><th>Phenome</th><th>Effect</th></tr>
+		<tr><td>Rxx</td><td>Outer Petal Color x</td></tr>
+		<tr><td>xxR</td><td>Inner Petal Color x</td></tr>
+		<tr><td>Ux</td><td>Leaf Color x</td></tr>
+		<tr><td>xU</td><td>Stamen Color x</td></tr>
+		<tr><td>ROYGU</td><td>Giant</td></tr>
+		<tr><td>UGYOR</td><td>Dwarf</td></tr>
+		<tr><th>x</th><th>Color</th></tr>
+		<tr><td>R</td><td>Cyan</td></tr>
+		<tr><td>O</td><td>Magenta</td></tr>
+		<tr><td>Y</td><td>Yellow</td></tr>
+	</table>
+	</div>
+
+	<div class='crosskey'>
 	<h3>Petal/Leaf/Stamen Color Key</h3>
 	<?php include("colorkey.php.inc"); ?>
 	</div>

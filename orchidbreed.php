@@ -1,14 +1,14 @@
 <?php
 require_once('colorsum.php.inc');
 
-$known["Amazon Queen"]		= "OUGUOUGUOUGUOIYRGIRYYUYIUROI";
-$known["Arabian Nights"]	= "OUGUOUGUOUGUOIRGGOROOURYIGRIUO";
-$known["Avalon"]			= "IURGIUGIOUIRGIOUGUOUGUOUGUO";
-$known["Emperor"]			= "IGRYIRGGIYUGIRGGIOUGUOUGUOUGUO";
-$known["Hidden in Darkness"]= "YRYROYGUOUGUOUYURYYYURORGGRYYURGGG";
-$known["Masquerade"]		= "IIRYYIIYUIUROIROYGYORIUYIORIIRYYIIIOUGUOUGUOU";
-$known["Sabertooth"]		= "IRGGUGIOUIGRGGIOUGUOUGUOUGUO";
-$known["Shangri-La"]		= "YIROIGUROIOUGUOUGUOUGUOIRYYIUOI";
+$known["Amazon Queen"]		= "ILALILALILALIVTPAVPTTLTVLPIV";
+$known["Arabian Nights"]	= "ILALILALILALIVPAAIPIILPTVAPVLI";
+$known["Avalon"]			= "VLPAVLAVILVPAVILALILALILALI";
+$known["Emperor"]			= "VAPTVPAAVTLAVPAAVILALILALILALI";
+$known["Hidden in Darkness"]= "TPTPITALILALILTLPTTTLPIPAAPTTLPAAA";
+$known["Masquerade"]		= "VVPTTVVTLVLPIVPITATIPVLTVIPVVPTTVVVILALILALIL";
+$known["Sabertooth"]		= "VPAALAVILVAPAAVILALILALILALI";
+$known["Shangri-La"]		= "TVPIVALPIVILALILALILALIVPTTVLIV";
 
 $inputstate['LS'] = "";
 $inputstate['RS'] = "";
@@ -28,11 +28,11 @@ function printerrors() {
 
 function colormap($c) {
 	switch ($c) {
-		case 'O':
+		case 'I':
 			return 'C';
-		case 'Y':
+		case 'T':
 			return 'M';
-		case 'G':
+		case 'A':
 			return 'Y';
 		default:
 			return '';
@@ -48,7 +48,7 @@ function printgenome($label, $genome, $checks = false) {
 	$stem	= "";
 	$leaves	= "";
 
-	$genome = sprintf('K%sK', trim($genome));
+	$genome = sprintf('R%sR', trim($genome));
 	$glen = strlen($genome);
 
 	for ($i = 0 ; $i < $glen ; $i++)
@@ -59,34 +59,34 @@ function printgenome($label, $genome, $checks = false) {
 		$c2 = $quad[2];
 		$c3 = $quad[3];
 
-		if ($quad == "ROYG") {
+		if ($quad == "PITA") {
 			$size += 1;
 		}
 
-		if ($quad == "GYOR") {
+		if ($quad == "ATIP") {
 			$size -= 1;
 		}
 
-		if ($c0 == 'U') {
+		if ($c0 == 'L') {
 			$stem .= colormap($c1);
 		}
 
-		if ($c1 == 'U') {
+		if ($c1 == 'L') {
 			$leaves .= colormap($c0);
 		}
 
-		if ($c0 == 'R') {
+		if ($c0 == 'P') {
 			$upetal .= colormap($c1);
 			if ($c1 == $c2) {
 				$mpetal .= colormap($c1);
 			}
 		}
 
-		if ($c1 == 'R') {
+		if ($c1 == 'P') {
 			$fpetal .= colormap($c0);
 		}
 
-		if (($c0 == 'U') && ($c1 == 'R')) {
+		if (($c0 == 'L') && ($c1 == 'P')) {
 			$lpetal .= colormap($c2);
 		}
 
@@ -180,8 +180,8 @@ function validate() {
 	$_REQUEST['L'] = strtoupper(preg_replace('/[^A-Za-z]/', '', $_REQUEST['L']));
 	$_REQUEST['R'] = strtoupper(preg_replace('/[^A-Za-z]/', '', $_REQUEST['R']));
 	$_REQUEST['target'] = strtoupper(preg_replace('/[^A-Za-z]/', '', $_REQUEST['target']));
-	$_REQUEST['L'] = trim($_REQUEST['L'], 'K');
-	$_REQUEST['R'] = trim($_REQUEST['R'], 'K');
+	$_REQUEST['L'] = trim($_REQUEST['L'], 'R');
+	$_REQUEST['R'] = trim($_REQUEST['R'], 'R');
 	$_REQUEST['name'] = preg_replace('/[^A-Za-z#0-9]/', '', $_REQUEST['name']);
 
 	if (empty($_REQUEST['name'])) {
@@ -303,7 +303,7 @@ runcross();
 	</p>
 
 	<p>
-	NOTE: This tool currently uses old (T6 and earlier) gene color codes. Please use that format until all the mappings to new colors are known and the tool can be updated. Start/End genes (K) are optional. See <a href="https://atitd.wiki/tale8/Flower_Genome_Theories">Flower Genome Theories</a> at the <a href="https://atitd.wiki/">ATITD Wiki</a> for details on ATITD Orchid genomes. The details there as well as the other <a href="https://atitd.wiki/tale8/Guides#Genetics">Genetics Guides</a> are the basis for how this simulator interprets genomes to generate these data tables.
+	NOTE: This tool uses NEW (T8) gene color codes. Start/End genes (R) are optional. See <a href="https://atitd.wiki/tale8/Flower_Genome_Theories">Flower Genome Theories</a> at the <a href="https://atitd.wiki/">ATITD Wiki</a> for details on ATITD Orchid genomes. The details there as well as the other <a href="https://atitd.wiki/tale8/Guides#Genetics">Genetics Guides</a> are the basis for how this simulator interprets genomes to generate these data tables.
 	</p>
 
 	<noscript>
@@ -391,6 +391,27 @@ runcross();
 		<tr><td>Lv</td><td>Leaf Color</td></tr>
 		<tr><td>Size</td><td>Sum of size genes (-1 = dwarf, 1 = giant)</td></tr>
 		<tr><td>L</td><td>Genome Length</td></tr>
+	</table>
+	</div>
+
+	<div class='crosskey'>
+	<h3>Orchid Phenomes</h3>
+
+	<table cellpadding="3" cellspacing="0">
+		<tr><th>Phenome</th><th>Effect</th></tr>
+		<tr><td>Px</td><td>Upper Petal Color x</td></tr>
+		<tr><td>xxx</td><td>Lower Petal Color x</td></tr>
+		<tr><td>LPx</td><td>Lower Petal Color x</td></tr>
+		<tr><td>Pxx</td><td>Main Petal Color x</td></tr>
+		<tr><td>xP</td><td>Front Petal Color x</td></tr>
+		<tr><td>Lx</td><td>Stem Color x</td></tr>
+		<tr><td>xL</td><td>Leaf Color x</td></tr>
+		<tr><td>PITA</td><td>Giant (Size += 1)</td></tr>
+		<tr><td>ATIP</td><td>Dwarf (Size -= 1)</td></tr>
+		<tr><th>x</th><th>Color</th></tr>
+		<tr><td>I</td><td>Cyan</td></tr>
+		<tr><td>T</td><td>Magenta</td></tr>
+		<tr><td>A</td><td>Yellow</td></tr>
 	</table>
 	</div>
 

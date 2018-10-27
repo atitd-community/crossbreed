@@ -19,6 +19,18 @@ function onCheck(box) {
 	}
 }
 
+function onCheckAll(box) {
+	table = box.parentNode.parentNode.parentNode;
+	inputs = table.getElementsByTagName("input");
+
+	for (i = 0 ; i < inputs.length ; i++) {
+		if (box != inputs[i]) {
+			inputs[i].checked = box.checked;
+			onCheck(inputs[i]);
+		}
+	}
+}
+
 function onStrainSwap() {
 	LS = document.getElementById("LS");
 	RS = document.getElementById("RS");

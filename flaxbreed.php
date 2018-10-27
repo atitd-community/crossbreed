@@ -348,10 +348,10 @@ runcross();
 	<?php printerrors(); ?>
 
 	<?php if (!empty($ltgenome) && !empty($rtgenome)) { ?>
-	<h3>Results</h3>
+	<h3>Crossbreed Results</h3>
 
 	<table cellpadding="3" cellspacing="0">
-		<tr><th style='text-align: center;'>X</th><th>Splint</th><th>Water</th><th>Weed</th><th>TPW</th><th>Flax</th><th>Rotn</th><th>Seed</th><th>N+</th><th>N-</th><th>F/A</th><th>L</th><th>Genome</th></tr>
+		<tr><th style='text-align: center;'><input type='checkbox' onchange='onCheckAll(this);'></th><th>Splint</th><th>Water</th><th>Weed</th><th>TPW</th><th>Flax</th><th>Rotn</th><th>Seed</th><th>N+</th><th>N-</th><th>F/A</th><th>L</th><th>Genome</th></tr>
 		<?php printresults(); ?>
 	</table>
 

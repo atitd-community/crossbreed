@@ -1,4 +1,5 @@
 <?php
+require_once('crossbreed.php.inc');
 
 $known["Constitution Peak"]		= "KPITATATATKIPPIKI";
 $known["Jacob's Field*"]		= "ATATKIITATATKITPPIATAT";
@@ -16,14 +17,7 @@ $rtgenome = "";
 $errors = "";
 
 $children = array();
-
-function printerrors() {
-	global $errors;
-
-	if (!empty($errors)) {
-		printf("<div class='error'>%s</div>", $errors);
-	}
-}
+$mutations = array();
 
 function printgenome($label, $genome, $checks = false) {
 	$weeds	= 5;
@@ -129,27 +123,6 @@ function printgenome($label, $genome, $checks = false) {
 	printf("</tr>\n");
 }
 
-function printresults() {
-	global $children;
-	global $ltgenome;
-	global $rtgenome;
-
-	printgenome('L:' . (!empty($_REQUEST['LS']) ? $_REQUEST['LS'] : 'Other'), $ltgenome, true);
-	printgenome('R:' . (!empty($_REQUEST['RS']) ? $_REQUEST['RS'] : 'Other'), $rtgenome, true);
-
-	foreach ($children as $genome) {
-		printgenome($_REQUEST['name'], $genome, true);
-	}
-}
-
-function printknowns() {
-	global $known;
-
-	foreach ($known as $name => $genome) {
-		printgenome($name, $genome);
-	}
-}
-
 function validate() {
 	global $errors;
 	global $known;
@@ -180,98 +153,6 @@ function validate() {
 	}
 }
 
-function listchoices($which) {
-	global $known;
-	global $inputstate;
-
-	$other = " selected=\"selected\"";
-
-	foreach ($known as $name => $genome) {
-		if ($name == $_REQUEST[$which]) {
-			$sel = " selected=\"selected\"";
-			$other = "";
-			$inputstate[$which] = " disabled=\"disabled\"";
-		} else {
-			$sel = "";
-		}
-
-		printf("<option value=\"%s\"%s>%s</option>\n", $name, $sel, $name);
-	}
-
-	printf("<option value=\"\"%s>Other</option>\n", $other, $name);
-}
-
-function runcross() {
-	global $known;
-	global $children;
-	global $ltgenome;
-	global $rtgenome;
-
-	$ltgenome = $_REQUEST['L'];
-	$rtgenome = $_REQUEST['R'];
-
-	if (empty($ltgenome)) {
-		$ltgenome = $known[$_REQUEST['LS']];
-	} else {
-		foreach ($known as $name => $genome) {
-			if ($genome == $ltgenome) {
-				$_REQUEST['LS'] == $name;
-			}
-		}
-	}
-
-	if (empty($rtgenome)) {
-		$rtgenome = $known[$_REQUEST['RS']];
-	} else {
-		foreach ($known as $name => $genome) {
-			if ($genome == $ltgenome) {
-				$_REQUEST['RS'] == $name;
-			}
-		}
-	}
-
-	$llen = strlen($ltgenome);
-	$rlen = strlen($rtgenome);
-	$clen = floor(($llen + $rlen)/2);
-
-	if (strlen($ltgenome) < strlen($rtgenome)) {
-		while (strlen($ltgenome) < strlen($rtgenome)) {
-			$ltgenome = " " . $ltgenome . " ";
-		}
-
-		if ((($llen + $rlen) % 2) == 1) {
-			$ltgenome = substr($ltgenome, 1);
-		}
-
-		$max = strlen($rtgenome);
-	} else {
-		while (strlen($rtgenome) < strlen($ltgenome)) {
-			$rtgenome = " " . $rtgenome . " ";
-		}
-
-		$max = strlen($ltgenome);
-	}
-
-	if ((($llen + $rlen) % 2) == 1) {
-		$clen++;
-	}
-
-	$ltgenome = rtrim($ltgenome);
-	$rtgenome = rtrim($rtgenome);
-
-	for ($i = 0 ; $i < $max ; $i++) {
-		$cleft	= trim(substr($ltgenome, 0, $i));
-		$cright	= trim(substr($rtgenome, $i));
-		$child	= trim($cleft . $cright);
-
-		if (strlen($child) == $clen) {
-			if (!in_array($child, $children)) {
-				$children[] = $child;
-			}
-		}
-	}
-}
-
 validate();
 runcross();
 ?>
@@ -290,7 +171,7 @@ runcross();
 	<h3>Ashen's Flax Crossbreed Simulator</h3>
 
 	<p>
-	To simulate a Flax crossbreed, select the strain of the seeds that will go in the left and right splits below and click Generate. Select strain "Other" to input the genome directly (e.g. to cross player-made strains). The simulator will generate a list of possible child genomes, excluding mutation (duplication or subtraction of a gene at the splice point). After doing the actual crossbreed and planting your Flax, you can compare (by testing) to the generated table to determine which genome(s) match your new Flax strain to target further crossbreeding.
+	To simulate a Flax crossbreed, select the strain of the seeds that will go in the left and right splits below and click Generate. Select strain "Other" to input the genome directly (e.g. to cross player-made strains). The simulator will generate a list of possible child genomes, with or without mutations (duplication or subtraction of a gene at the splice point). After doing the actual crossbreed and planting your Flax, you can compare (by testing) to the generated table to determine which genome(s) match your new Flax strain to target further crossbreeding.
 	</p>
 
 	<p>
@@ -341,6 +222,7 @@ runcross();
 		</table>
 		<input type="button" name="swap" value="Swap L/R" onclick="onStrainSwap()">
 		<input type="submit" value="Generate" style="margin-top: 1em;">
+		<input type="checkbox" name="mutate"<?php if ($_REQUEST['mutate']=='on') echo ' checked="checked"'; ?>>Include mutations (25% probability)</input>
 	</form>
 
 	<p>* Jacob's Field and Nile Green require one more weeding than reported here under "Weed" (current theory). Suspect something is missing from theory: weed default is supposedly 5 and theory says nothing about increasing weeds. Let me know if you know what's up. I <em>think</em> the sequence <code>TP</code> might be responsible.</p>
@@ -352,10 +234,19 @@ runcross();
 
 	<table cellpadding="3" cellspacing="0">
 		<tr><th style='text-align: center;'><input type='checkbox' onchange='onCheckAll(this);'></th><th>Splint</th><th>Water</th><th>Weed</th><th>TPW</th><th>Flax</th><th>Rotn</th><th>Seed</th><th>N+</th><th>N-</th><th>F/A</th><th>L</th><th>Genome</th></tr>
-		<?php printresults(); ?>
+		<?php printparents(); ?>
+		<?php printresults($children); ?>
+		<?php if ($_REQUEST['mutate'] == 'on') { ?>
+		<tr><th colspan="13" style="text-align: center;"></th></tr>
+		<?php printresults($mutations); ?>
+		<?php } ?>
 	</table>
 
-	<p>Total of <?php echo count($children); ?> possible children, excluding gene duplication/deletion mutations</p>
+	<?php if ($_REQUEST['mutate'] == 'on') { ?>
+	<p>Total of <?php echo (count($children) + count($mutations)); ?> possible children (including gene duplication/deletion mutations)</p>
+	<?php } else { ?>
+	<p>Total of <?php echo count($children); ?> possible children (excluding gene duplication/deletion mutations)</p>
+	<?php } ?>
 	<?php } ?>
 
 	<p>

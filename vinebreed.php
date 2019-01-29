@@ -158,7 +158,7 @@ runcross();
 	<h3>Ashen's Vine Crossbreed Simulator</h3>
 
 	<p>
-	To simulate a Vine crossbreed, select the strain of the vines that will go in the left and right splits below and click Generate. Select strain "Other" to input the genome directly (e.g. to cross player-made strains). The simulator will generate a list of possible child genomes, with or without mutations (duplication or subtraction of a gene at the splice point). After doing the actual crossbreed and planting your Vine, you can compare (visually and/or testing) to the generated table to determine which genome(s) match your new Vine strain to target further crossbreeding.
+	To simulate a Vine crossbreed, select the strain of the vines that will go in the left and right splits below and click Generate. Select strain "Other" to input the genome directly (e.g. to cross player-made strains). The simulator will generate a list of possible child genomes, with or without mutations (duplication or subtraction of a gene at the splice point). After doing the actual crossbreed and planting your Vine, you can compare (through testing) to the generated table to determine which genome(s) match your new Vine strain to target further crossbreeding.
 	</p>
 
 	<p>

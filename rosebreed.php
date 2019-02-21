@@ -2,17 +2,17 @@
 require_once('colorsum.php.inc');
 require_once('crossbreed.php.inc');
 
-$known["Bloodheart*"]		= "OUOUOUOU";
-$known["Dawn's Blush*"]		= "YYRUYGGROURYYRYUYGGR";
-$known["Goldenleaves"]		= "UYGUYGUYGUYG";
-$known["Hatch's Bud"]		= "RYYRGGRGGOORGGRGGRURUYUY";
-$known["Heart of Darkness"]	= "RUROOUYURUOUYURUROOUYU";
-$known["Night Bloom"]		= "ROORYYRGGOORYYRGGRUOURUOUYROYGUGYOR";
-$known["Onion Skin"]		= "RYYRYYRGGURUYURUYURUYURUYUOUO";
-$known["Pantomime"]			= "YYROYYROYYROYYRO";
-$known["Pink Giant"]		= "ROOUROYGUROYGUYYR";
-$known["Red Dwarf"]			= "RYYRYYRGGRGGRGGOUOUYUYUYUGYOR";
-$known["White Giant"]		= "ROYGUYUYUY";
+$known["Bloodheart*"]		= "ILILILIL";
+$known["Dawn's Blush*"]		= "TTPLTAAPILPTTPTLTAAP";
+$known["Goldenleaves"]		= "LTALTALTALTA";
+$known["Hatch's Bud"]		= "PTTPAAPAAIIPAAPAAPLPLTLT";
+$known["Heart of Darkness"]	= "PLPIILTLPLILTLPLPIILTL";
+$known["Night Bloom"]		= "PIIPTTPAAIIPTTPAAPLILPLILTPITALATIP";
+$known["Onion Skin"]		= "PTTPTTPAALPLTLPLTLPLTLPLTLILI";
+$known["Pantomime"]			= "TTPITTPITTPITTPI";
+$known["Pink Giant"]		= "PIILPITALPITALTTP";
+$known["Red Dwarf"]			= "PTTPTTPAAPAAPAAILILTLTLTLATIP";
+$known["White Giant"]		= "PITALTLTLT";
 
 $inputstate['LS'] = "";
 $inputstate['RS'] = "";
@@ -25,11 +25,11 @@ $mutations = array();
 
 function petalmap($c) {
 	switch ($c) {
-		case 'O':
+		case 'I':
 			return 'C';
-		case 'Y':
+		case 'T':
 			return 'M';
-		case 'G':
+		case 'A':
 			return 'Y';
 		default:
 			return '';
@@ -38,11 +38,11 @@ function petalmap($c) {
 
 function leafmap($c) {
 	switch ($c) {
-		case 'R':
+		case 'P':
 			return 'C';
-		case 'O':
+		case 'I':
 			return 'M';
-		case 'Y':
+		case 'T':
 			return 'Y';
 		default:
 			return '';
@@ -57,7 +57,7 @@ function printgenome($label, $genome, $checks = false) {
 	$dwarf	= "";
 	$giant	= "";
 
-	$genome = sprintf('K%sK', trim($genome));
+	$genome = sprintf('R%sR', trim($genome));
 	$glen = strlen($genome);
 
 	for ($i = 0 ; $i < $glen ; $i++)
@@ -67,27 +67,27 @@ function printgenome($label, $genome, $checks = false) {
 		$c1 = $quint[1];
 		$c2 = $quint[2];
 
-		if ($quint == "ROYGU") {
+		if ($quint == "PITAL") {
 			$giant .= "G";
 		}
 
-		if ($quint == "UGYOR") {
+		if ($quint == "LATIP") {
 			$dwarf .= "D";
 		}
 
-		if ($c0 == 'U') {
+		if ($c0 == 'L') {
 			$leaves .= leafmap($c1);
 		}
 
-		if ($c1 == 'U') {
+		if ($c1 == 'L') {
 			$stamen .= leafmap($c0);
 		}
 
-		if (($c0 == 'R') && ($c1 == $c2)) {
+		if (($c0 == 'P') && ($c1 == $c2)) {
 			$lpetal .= petalmap($c2);
 		}
 
-		if (($c2 == 'R') && ($c0 == $c1)) {
+		if (($c2 == 'P') && ($c0 == $c1)) {
 			$upetal .= petalmap($c0);
 		}
 	}
@@ -151,8 +151,8 @@ function validate() {
 	$_REQUEST['L'] = strtoupper(preg_replace('/[^A-Za-z]/', '', $_REQUEST['L']));
 	$_REQUEST['R'] = strtoupper(preg_replace('/[^A-Za-z]/', '', $_REQUEST['R']));
 	$_REQUEST['target'] = strtoupper(preg_replace('/[^A-Za-z]/', '', $_REQUEST['target']));
-	$_REQUEST['L'] = trim($_REQUEST['L'], 'K');
-	$_REQUEST['R'] = trim($_REQUEST['R'], 'K');
+	$_REQUEST['L'] = trim($_REQUEST['L'], 'R');
+	$_REQUEST['R'] = trim($_REQUEST['R'], 'R');
 	$_REQUEST['name'] = preg_replace('/[^A-Za-z#0-9]/', '', $_REQUEST['name']);
 
 	if (empty($_REQUEST['name'])) {
@@ -182,7 +182,7 @@ runcross();
 	</p>
 
 	<p>
-	NOTE: This tool currently uses old (T6 and earlier) gene color codes. Please use that format until all the mappings to new colors are known and the tool can be updated. Start/End genes (K) are optional. See <a href="https://atitd.wiki/tale8/Flower_Genome_Theories">Flower Genome Theories</a> at the <a href="https://atitd.wiki/">ATITD Wiki</a> for details on ATITD Rose of Ra genomes. The details there as well as the other <a href="https://atitd.wiki/tale8/Guides#Genetics">Genetics Guides</a> are the basis for how this simulator interprets genomes to generate these data tables.
+	NOTE: This tool uses NEW (T8) gene color codes. Start/End genes (R) are optional. See <a href="https://atitd.wiki/tale8/Flower_Genome_Theories">Flower Genome Theories</a> at the <a href="https://atitd.wiki/">ATITD Wiki</a> for details on ATITD Rose of Ra genomes. The details there as well as the other <a href="https://atitd.wiki/tale8/Guides#Genetics">Genetics Guides</a> are the basis for how this simulator interprets genomes to generate these data tables.
 	</p>
 
 	<noscript>
@@ -220,7 +220,7 @@ runcross();
 			</tr>
 			<tr>
 				<th colspan='2'>Target Sequence</th>
-				<td><input type="text" id="target" name="target" size="60" placeholder="Example: ROYGU" value="<?php echo $_REQUEST['target']; ?>"></td>
+				<td><input type="text" id="target" name="target" size="60" placeholder="Example: PITAL" value="<?php echo $_REQUEST['target']; ?>"></td>
 			</tr>
 			<tr>
 				<th colspan='2'>Cross Name</th>
@@ -290,16 +290,20 @@ runcross();
 
 	<table cellpadding="3" cellspacing="0">
 		<tr><th>Phenome</th><th>Effect</th></tr>
-		<tr><td>Rxx</td><td>Outer Petal Color x</td></tr>
-		<tr><td>xxR</td><td>Inner Petal Color x</td></tr>
-		<tr><td>Ux</td><td>Leaf Color x</td></tr>
-		<tr><td>xU</td><td>Stamen Color x</td></tr>
-		<tr><td>ROYGU</td><td>Giant</td></tr>
-		<tr><td>UGYOR</td><td>Dwarf</td></tr>
+		<tr><td>Pxx</td><td>Outer Petal Color x</td></tr>
+		<tr><td>xxP</td><td>Inner Petal Color x</td></tr>
+		<tr><td>Ly</td><td>Leaf Color y</td></tr>
+		<tr><td>yL</td><td>Stamen Color y</td></tr>
+		<tr><td>PITAL</td><td>Giant</td></tr>
+		<tr><td>LATIP</td><td>Dwarf</td></tr>
 		<tr><th>x</th><th>Color</th></tr>
-		<tr><td>R</td><td>Cyan</td></tr>
-		<tr><td>O</td><td>Magenta</td></tr>
-		<tr><td>Y</td><td>Yellow</td></tr>
+		<tr><td>I</td><td>Cyan</td></tr>
+		<tr><td>T</td><td>Magenta</td></tr>
+		<tr><td>A</td><td>Yellow</td></tr>
+		<tr><th>y</th><th>Color</th></tr>
+		<tr><td>P</td><td>Cyan</td></tr>
+		<tr><td>I</td><td>Magenta</td></tr>
+		<tr><td>T</td><td>Yellow</td></tr>
 	</table>
 	</div>
 

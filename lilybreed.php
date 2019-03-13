@@ -146,6 +146,8 @@ function printgenome($label, $genome, $checks = false) {
 	$onpetals = colorsum($onpetal);
 	$ospetals = colorsum($ospetal);
 
+	$ferts = $ferts / 2;
+
 	printf("<td title=\"%s\">%s</td>", $istamen, $istamens);
 	printf("<td title=\"%s\">%s</td>", $mstamen, $mstamens);
 	printf("<td title=\"%s\">%s</td>", $ostamen, $ostamens);
@@ -157,7 +159,7 @@ function printgenome($label, $genome, $checks = false) {
 	printf("<td title=\"%s\">%s</td>", $ospetal, $ospetals);
 
 	printf("<td>%0.1f</td>", $size);
-	printf("<td>%s</td>", $ferts);
+	printf("<td>%d</td>", $ferts);
 
 	printf("<td>%d</td>", strlen($genome));
 
@@ -223,6 +225,10 @@ runcross();
 
 	<p>
 	NOTE: This tool uses NEW (T8) gene color codes. Start/End genes (R) are optional. See <a href="https://atitd.wiki/tale8/Flower_Genome_Theories">Flower Genome Theories</a> at the <a href="https://atitd.wiki/">ATITD Wiki</a> for details on ATITD Sea Lily genomes. The details there as well as the other <a href="https://atitd.wiki/tale8/Guides#Genetics">Genetics Guides</a> are the basis for how this simulator interprets genomes to generate these data tables.
+	</p>
+
+	<p>
+	ALSO: Fertilizations changed in the latter part of T8. All Lily fertilizations are 1/2 what they would otherwise be.
 	</p>
 
 	<noscript>

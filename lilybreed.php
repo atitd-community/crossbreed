@@ -13,6 +13,7 @@ $known['Fracture']	= 'PITAPITATIPAIPAIII';
 $known['Morning']	= 'VPPPVTTTVTTTLTTTLTTTLPIPLPIPAPPPATTTAIPPAPPI';
 $known['Silken']	= 'PPPIIITTTAAALLLVVV';
 $known['Vampire']	= 'VTVTVIVTVIVI';
+$known['Water*']	= 'LPPPLPPPLPPPLPPPLIPPLIPPLIPPLIPPAPPPAPPPAPPPAPPPAIPPAIPPAIPPAIPP';
 
 $inputstate['LS'] = "";
 $inputstate['RS'] = "";
@@ -305,6 +306,8 @@ runcross();
 		<tr><th>Name</th><th>IS</th><th>MS</th><th>OS</th><th>IEP</th><th>IWP</th><th>ONP</th><th>OSP</th><th>Size</th><th>Ferts</th><th>L</th><th>Genome</th></tr>
 		<?php printknowns(); ?>
 	</table>
+
+	<p>* Very high confidence from solvent data so far but more testing needed to confirm.</p>
 
 	<div class='crosskey'>
 	<h3>Sea Lily Attributes</h3>

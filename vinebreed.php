@@ -162,7 +162,7 @@ runcross();
 	</p>
 
 	<p>
-	NOTE: This tool currently uses old (T6 and earlier) gene color codes. Please use that format until all the mappings to new colors are known and the tool can be updated. Start/End genes (K) are optional. See <a href="https://atitd.wiki/tale7/Vine_Genome_Theory">Vine Genome Theory</a> at the <a href="https://atitd.wiki/">ATITD Wiki</a> for details on ATITD Vine genomes. The details there as well as the other <a href="https://atitd.wiki/tale8/Guides#Genetics">Genetics Guides</a> are the basis for how this simulator interprets genomes to generate these data tables.
+	NOTE: This tool currently uses old (T6 and earlier) gene color codes. Please use that format until all the mappings to new colors are known and the tool can be updated. Start/End genes (K) are optional. See <a href="https://www.atitd.org/wiki/tale7/Vine_Genome_Theory">Vine Genome Theory</a> at the <a href="https://atitd.wiki/">ATITD Wiki</a> for details on ATITD Vine genomes. The details there as well as the other <a href="https://atitd.wiki/tale8/Guides#Genetics">Genetics Guides</a> are the basis for how this simulator interprets genomes to generate these data tables.
 	</p>
 
 	<noscript>

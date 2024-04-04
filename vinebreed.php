@@ -2,13 +2,13 @@
 require_once('colorsum.php.inc');
 require_once('crossbreed.php.inc');
 
-$known["Amusement"]		= "GGGGOOORGGGGGROOORGGGGGGGGGROGGGGG";
-$known["Appreciation"]	= "GYRYRYYRYYRYYR";
-$known["Balance"]		= "YYYGGGRYYROGGGRROOYYGGGOOOR";
-$known["Contemplation"]	= "RYYRGYROGGGGGRYYRO";
-$known["Distraction"]	= "GGGGGGGGOOORGGGGGGGGOOORGGGGGG";
-$known["Frivolity"]		= "GGGGGGYRROOYYGGGGGRROOYYYGGGGGYYYGGGGG";
-$known["Wisdom"]		= "GGGYROGGGGGYROGGGGGYROGG";
+$known["Amusement"]		= "AAAAIIIPAAAAAPIIIPAAAAAAAAAPIAAAAA";
+$known["Appreciation"]	= "ATPTPTTPTTPTTP";
+$known["Balance"]		= "TTTAAAPTTPIAAAPPIITTAAAIIIP";
+$known["Contemplation"]	= "PTTPATPIAAAAAPTTPI";
+$known["Distraction"]	= "AAAAAAAAIIIPAAAAAAAAIIIPAAAAAA";
+$known["Frivolity"]		= "AAAAAATPPIITTAAAAAPPIITTTAAAAATTTAAAAA";
+$known["Wisdom"]		= "AAAMGIAAAAAMGIAAAAAMGIAA";
 
 
 $inputstate['LS'] = "";
@@ -43,35 +43,35 @@ function printgenome($label, $genome, $checks = false) {
 		$c1 = $quint[1];
 		$c2 = $quint[2];
 
-		if ($quad == "OYYG") {
+		if ($quad == "ITTA") {
 			$acid .= "A";
 		}
 
-		if ($sext == "RROOYY") {
+		if ($sext == "PPIITT") {
 			$color .= "C";
 		}
 
-		if ($quad == "OOOR") {
+		if ($quad == "IIIP") {
 			$grapes .= "G";
 		}
 
-		if ($trip == "YRO") {
+		if ($trip == "TPI") {
 			$skin .= "K";
 		}
 
-		if ($quad == "RYYR") {
+		if ($quad == "PTTP") {
 			$quality .= "Q";
 		}
 
-		if ($trip == "YYY") {
+		if ($trip == "TTT") {
 			$sugar .= "S";
 		}
 
-		if ($quint == "GGGRO") {
+		if ($quint == "AAAPI") {
 			$vigor .= "V";
 		}
 
-		if ($trip == "GYR") {
+		if ($trip == "ATP") {
 			$hue .= "H";
 		}
 	}
@@ -162,7 +162,7 @@ runcross();
 	</p>
 
 	<p>
-	NOTE: This tool currently uses old (T6 and earlier) gene color codes. Please use that format until all the mappings to new colors are known and the tool can be updated. Start/End genes (K) are optional. See <a href="https://www.atitd.org/wiki/tale7/Vine_Genome_Theory">Vine Genome Theory</a> at the <a href="https://atitd.wiki/">ATITD Wiki</a> for details on ATITD Vine genomes. The details there as well as the other <a href="https://atitd.wiki/tale8/Guides#Genetics">Genetics Guides</a> are the basis for how this simulator interprets genomes to generate these data tables.
+	NOTE: This tool uses T8 gene color codes. Please use that format until all the mappings to new colors are known and the tool can be updated. Start/End genes (K) are optional. See <a href="https://www.atitd.org/wiki/tale11/Vine_Genome_Theory">Vine Genome Theory</a> at the <a href="https://atitd.wiki/">ATITD Wiki</a> for details on ATITD Vine genomes. The details there as well as the other <a href="https://atitd.wiki/tale11/Guides#Genetics">Genetics Guides</a> are the basis for how this simulator interprets genomes to generate these data tables.
 	</p>
 
 	<noscript>
@@ -269,14 +269,14 @@ runcross();
 
 	<table cellpadding="3" cellspacing="0">
 		<tr><th>Phenome</th><th>Effect</th></tr>
-		<tr><td>OYYG</td><td>+Acid</td></tr>
-		<tr><td>RROOYY</td><td>+Color</td></tr>
-		<tr><td>OOOR</td><td>+Grapes</td></tr>
-		<tr><td>YRO</td><td>+Skin</td></tr>
-		<tr><td>RYYR</td><td>+Quality</td></tr>
-		<tr><td>YYY</td><td>+Sugar</td></tr>
-		<tr><td>GGGRO</td><td>+Vigor</td></tr>
-		<tr><td>GYR</td><td>+Hue</td></tr>
+		<tr><td>ITTA</td><td>+Acid</td></tr>
+		<tr><td>PPIITT</td><td>+Color</td></tr>
+		<tr><td>IIIP</td><td>+Grapes</td></tr>
+		<tr><td>TPI</td><td>+Skin</td></tr>
+		<tr><td>PTTP</td><td>+Quality</td></tr>
+		<tr><td>TTT</td><td>+Sugar</td></tr>
+		<tr><td>AAAPI</td><td>+Vigor</td></tr>
+		<tr><td>ATP</td><td>+Hue</td></tr>
 	</table>
 
 	</div>

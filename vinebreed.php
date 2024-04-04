@@ -131,8 +131,8 @@ function validate() {
 	$_REQUEST['L'] = strtoupper(preg_replace('/[^A-Za-z]/', '', $_REQUEST['L']));
 	$_REQUEST['R'] = strtoupper(preg_replace('/[^A-Za-z]/', '', $_REQUEST['R']));
 	$_REQUEST['target'] = strtoupper(preg_replace('/[^A-Za-z]/', '', $_REQUEST['target']));
-	$_REQUEST['L'] = trim($_REQUEST['L'], 'K');
-	$_REQUEST['R'] = trim($_REQUEST['R'], 'K');
+	$_REQUEST['L'] = trim($_REQUEST['L'], 'R');
+	$_REQUEST['R'] = trim($_REQUEST['R'], 'R');
 	$_REQUEST['name'] = preg_replace('/[^A-Za-z#0-9]/', '', $_REQUEST['name']);
 
 	if (empty($_REQUEST['name'])) {

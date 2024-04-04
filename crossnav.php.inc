@@ -6,4 +6,5 @@
 	<li><a href="rosebreed.php">Roses</a></lI>
 	<li><a href="orchidbreed.php">Orchids</a></lI>
 	<li><a href="vinebreed.php">Vines</a></lI>
+	<li><a href="wheatbreed.php">Wheat</a></lI>
 </ul>
